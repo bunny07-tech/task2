@@ -26,9 +26,7 @@ resource "aws_security_group" "SG" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-
-  
-  ingress {
+ingress {
     description = "SSH from VPC"
     from_port   = 22
     to_port     = 22
@@ -231,10 +229,7 @@ custom_origin_config {
     default_ttl            = 3600
     max_ttl                = 86400
   }
-
-
-  
-  }
+}
 
 
   ordered_cache_behavior {
@@ -243,12 +238,10 @@ custom_origin_config {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
 
-
-    forwarded_values {
+forwarded_values {
       query_string = false
 
-
-      cookies {
+  cookies {
         forward = "none"
       }
     }
@@ -259,9 +252,7 @@ custom_origin_config {
       
   }
 
-
-
-  viewer_certificate {
+viewer_certificate {
     cloudfront_default_certificate = true
   }
   connection {
